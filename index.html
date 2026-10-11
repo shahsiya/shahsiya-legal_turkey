@@ -1735,7 +1735,19 @@ var CHANNELS = [
       });
       overlay.classList.add('open');
     }
+// Открытие услуги по ссылке из Telegram-бота
+var urlParams = new URLSearchParams(window.location.search);
+var requestedServiceId = urlParams.get('service');
 
+if (requestedServiceId) {
+  var requestedService = SERVICES.find(function (s) {
+    return s.id === requestedServiceId;
+  });
+
+  if (requestedService) {
+    openServiceModal(requestedService);
+  }
+}
     function openSocialModal(id) {
       var info = SOCIAL_INFO[id];
       box.innerHTML =
